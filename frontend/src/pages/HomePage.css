@@ -1,0 +1,258 @@
+/* Card Style (Premium UI) */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 60px 50px;
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-align: center;
+  width: 92%;
+  max-width: 1400px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.card h1 {
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 2.5rem);
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card p {
+  margin-bottom: 30px;
+  font-size: 1.6rem;
+  color: #e8f6f5;
+  font-weight: 500;
+}
+
+input {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 64px;
+  padding: 0 24px;
+  margin: 0;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  outline: none;
+  background: #ffffff;
+  color: #1a1f1e;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+input:focus {
+  background: #ffffff;
+  border-color: #ffd24a;
+  box-shadow: 0 0 0 4px rgba(255, 210, 74, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+::placeholder {
+  color: rgba(26, 31, 30, 0.45);
+  font-weight: 400;
+}
+
+.date-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.date-group input {
+  margin-bottom: 0;
+  color: transparent;
+}
+
+.date-group input::-webkit-datetime-edit {
+  color: transparent;
+}
+
+.date-group input:focus,
+.date-group input:valid {
+  color: #1a1f1e;
+}
+
+.date-group input:focus::-webkit-datetime-edit,
+.date-group input:valid::-webkit-datetime-edit {
+  color: #1a1f1e;
+}
+
+.date-group input:focus + .date-placeholder,
+.date-group input:valid + .date-placeholder {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.date-placeholder {
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(26, 31, 30, 0.45);
+  pointer-events: none;
+  font-weight: 400;
+  font-size: 1.15rem;
+  transition: opacity 0.2s ease;
+}
+
+button {
+  width: 100%;
+  padding: 20px 32px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #ffd24a 0%, #ffb800 100%);
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #4a2f00;
+  border-radius: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 10px 25px rgba(255, 210, 74, 0.4);
+}
+
+button:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 210, 74, 0.55);
+  background: linear-gradient(135deg, #ffde70 0%, #ffc629 100%);
+}
+
+button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 5px 15px rgba(255, 210, 74, 0.3);
+}
+
+/* Card entrance animation */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.995);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Form fields staggered fade */
+@keyframes formFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Trigger animations when page becomes active */
+.page.active .card {
+  animation: cardIn 640ms cubic-bezier(.22, .9, .36, 1) both;
+}
+
+.page.active .card form > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: formFade 480ms cubic-bezier(.22, .9, .36, 1) forwards;
+}
+
+.page.active .card form > *:nth-child(1) {
+  animation-delay: 320ms;
+}
+
+.page.active .card form > *:nth-child(2) {
+  animation-delay: 420ms;
+}
+
+.page.active .card form > *:nth-child(3) {
+  animation-delay: 520ms;
+}
+
+.page.active .card form > *:nth-child(4) {
+  animation-delay: 620ms;
+}
+
+.page.active .card form > *:nth-child(5) {
+  animation-delay: 720ms;
+}
+
+.page.active .card form > *:nth-child(6) {
+  animation-delay: 820ms;
+}
+
+/* Responsive adjustments for premium card */
+@media (max-width: 760px) {
+  .card {
+    padding: 40px 24px;
+    max-width: 95%;
+    border-radius: 20px;
+  }
+
+  input {
+    height: 56px;
+    padding: 0 16px;
+    font-size: 0.74rem;
+    margin-bottom: 16px;
+  }
+
+  .date-group {
+    margin-bottom: 16px;
+  }
+
+  .date-group input {
+    text-align: left !important;
+    -webkit-appearance: none;
+    appearance: none;
+    min-height: 56px;
+    line-height: 52px !important;
+  }
+
+  .date-group input::-webkit-date-and-time-value {
+    text-align: left !important;
+    margin: 0 !important;
+    line-height: 52px !important;
+  }
+
+  .date-group input::-webkit-datetime-edit,
+  .date-group input::-webkit-datetime-edit-fields-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 52px !important;
+    text-align: left !important;
+    height: 100%;
+    display: block !important;
+  }
+
+  .date-placeholder {
+    left: 18px;
+    font-size: 0.74rem;
+  }
+
+  button {
+    padding: 18px 24px;
+    font-size: 1.1rem;
+  }
+}

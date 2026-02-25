@@ -1,0 +1,175 @@
+/* Timed notice overlay (dim + message sequence) */
+.notice-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 2, 2, 0.6);
+  z-index: 1400;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 360ms ease, visibility 360ms ease;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+}
+
+.notice-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Overlay message styles (no card) */
+.notice-msg {
+  font-family: Gilroy, 'Helvetica Neue', Arial, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px 24px;
+  line-height: 1.05;
+  letter-spacing: 0.2px;
+  text-rendering: optimizeLegibility;
+}
+
+.notice-title {
+  font-size: clamp(2.2rem, 8vw, 7rem);
+  margin-bottom: 18px;
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: 0.6px;
+}
+
+.notice-list {
+  margin: 0 auto;
+  padding: 0;
+  list-style: disc inside;
+  color: rgba(255, 255, 255, 0.98);
+  font-size: clamp(1.4rem, 4vw, 2.6rem);
+  max-width: 780px;
+  text-align: left;
+  display: inline-block;
+}
+
+.notice-list li {
+  margin: 14px 0;
+}
+
+.notice-ephemeral {
+  font-size: clamp(2.5rem, 9vw, 6rem);
+  font-weight: 900;
+  margin: 14px 0;
+  letter-spacing: 0.6px;
+}
+
+.notice-final {
+  margin-top: 22px;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 400;
+}
+
+/* Bold styling for starred content */
+.notice-strong {
+  font-weight: 900;
+}
+
+@media (max-width: 520px) {
+  .notice-msg {
+    padding: 12px;
+  }
+}
+
+/* Word reveal animation */
+@keyframes wordReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.word-fade {
+  display: inline-block;
+  opacity: 0;
+  animation: wordReveal 500ms cubic-bezier(.22, .9, .36, 1) forwards;
+}
+
+/* Typewriter/Wipe reveal for list items */
+@keyframes typeReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.type-writer {
+  opacity: 0;
+  animation: typeReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Exit animation */
+@keyframes fadeOutRight {
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+.exit-right {
+  animation: fadeOutRight 500ms cubic-bezier(.22, .9, .36, 1) forwards;
+}
+
+/* Slide up animation for final message */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  opacity: 0;
+  animation: slideUpFade 800ms cubic-bezier(.22, .9, .36, 1) forwards;
+}
+
+/* Shake animation for emphasis */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-3px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.shake-emphasis {
+  display: inline-block;
+  animation: shake 1s ease-in-out 900ms;
+}
